@@ -42,7 +42,7 @@ body{
         /* z-index: -1; */
     }
 }
-@media (max-width:700px){
+@media (max-width:500px){
     .container{
         background: #8e7cdd;
         display: flex;
