@@ -86,6 +86,6 @@ function myCanvasMouseUp(event) {
         ctx.closePath();
     }
     } 
-c3.addEventListener("mousedown", myCanvasMouseDown, false);
-c3.addEventListener("mousemove", myCanvasMouseMove, false);
-c3.addEventListener("mouseup", myCanvasMouseUp, false);
+c3.addEventListener("touchstart", myCanvasMouseDown, false);
+c3.addEventListener("touchmove", myCanvasMouseMove, false);
+c3.addEventListener("touchend", myCanvasMouseUp, false);
