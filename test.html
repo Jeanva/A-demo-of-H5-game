@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id='canv' width="600" height="600" style='border:1px solid red;'>
+
+    </canvas>
+
+    <script>
+        var canvas = document.getElementById('canv');
+        var ctx = canvas.getContext("2d");
+                    
+        ctx.beginPath();
+        ctx.strokeStyle = "#f00";
+        ctx.lineWidth = 3;
+        var oX,oY;
+        var flag = false;
+        function draw(sx,sy,ex,ey){               
+            ctx.clearRect(0,0,600,600);
+            ctx.moveTo(sx,sy);
+            ctx.lineTo(ex,ey);
+            ctx.stroke();
+        }          
+        canvas.onmousedown = function(e){
+            ctx.clearRect(0,0,600,600);
+            if(flag){
+                draw(oX,oY,e.pageX,e.pageY);
+                }
+        }
+        // canvas.onmouseup = function(e){
+        //     ctx.clearRect(0,0,600,600);
+        // }
+        canvas.onclick = function(e){
+            if(!flag){
+                ctx.clearRect(0,0,600,600);
+                oX = e.pageX;
+                oY = e.pageY;                
+            }
+            flag = !flag;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{border:1px solid blue;
+            opacity:.5;
+        }
+        .target{
+            width:500px;height:400px;
+            border:2px solid green;
+            position: absolute;
+            z-index:-1;
+        }
+    </style>
+</head>
+<body>
+    <div class='target'></div>
+    <canvas id='cvs' width='500' height='400'>
+        浏览器版本太低，请升级
+    </canvas>
+    <script>
+        var c3 = document.getElementById('cvs');
+        var ctx = c3.getContext('2d');
+        var isMouseDown = false; // flag of mouse pressing down
+        var width = c3.width, height = c3.height;
+        var shap = 99;
+        ctx.fillStyle = 'pink';
+        ctx.strokeStyle ='red';
+        ctx.strokeWidth = 10;
+        ctx.lineWidth = 10;
+        
+        window.onclick = function(e){
+            console.log(e.target);
+            console.log('e.screenX',e.clientX,'e.screenY',e.clientY);
+        }
+
+        function myCanvasMouseDown(event) {
+        //event.preventDefault();    
+            if(event.button == 0) {
+                orignalX = event.offsetX;
+                orignalY = event.offsetY;
+                ctx.moveTo(orignalX,orignalY); 
+                data = ctx.getImageData(0, 0, width, height);
+                isMouseDown = true;
+            }
+        }
+        function myCanvasMouseMove(event) {
+        if (isMouseDown){
+            //event.preventDefault();
+            // switch(shap){
+            // case 0:
+            //     ctx.clearRect(0,0,width,height);
+            //     ctx.putImageData(data,0,0);
+            //     lastX = event.offsetX;
+            //     lastY = event.offsetY;
+            //     ctx.beginPath();
+            //     ctx.arc(orignalX+(lastX-orignalX)/2,orignalY+(lastY-orignalY)/2,Math.abs(lastX-orignalX)/2,0,Math.PI * 2,true);
+            //     ctx.stroke();
+            //     ctx.closePath();
+            // break;
+            // case 1:
+            //     ctx.clearRect(0,0,width,height);
+            //     ctx.putImageData(data,0,0);
+            //     lastX = event.offsetX;
+            //     lastY = event.offsetY;
+            //     ctx.strokeRect(orignalX, orignalY, lastX-orignalX, lastY-orignalY);
+            // break;
+            // case 2:
+                lastX = event.offsetX;
+                lastY = event.offsetY;
+                ctx.lineTo(lastX, lastY); //根据鼠标路径绘画  
+                    ctx.stroke();   //立即渲染  
+                // break;
+            
+            // }
+        }
+        }
+        function myCanvasMouseUp(event) {
+            if (isMouseDown){
+                //event.preventDefault();
+                
+                ctx.clearRect(0,0,width,height);
+                ctx.putImageData(data,0,0);
+                lastX = event.offsetX;
+                lastY = event.offsetY;
+                // switch(shap){
+                // case 0:
+                //     ctx.beginPath();
+                //     ctx.arc(orignalX+(lastX-orignalX)/2,orignalY+(lastY-orignalY)/2,Math.abs(lastX-orignalX)/2,0,Math.PI * 2,true);
+                //     ctx.stroke();
+                //     ctx.closePath();
+                // break;
+                // case 1:
+                //     ctx.beginPath();
+                //     ctx.strokeRect(orignalX, orignalY, lastX-orignalX, lastY-orignalY);
+                //     ctx.closePath();
+                // break;
+                // case 2:
+                
+                    ctx.lineTo(lastX, lastY); //根据鼠标路径绘画  
+                    ctx.stroke();   //立即渲染 
+                
+                // break;
+                // }
+                isMouseDown = false;
+                lastX = null;
+                lastY = null;
+                orignalX = null;
+                orignalY = null;
+                data = ctx.getImageData(0, 0, width, height);
+                ctx.beginPath();
+                ctx.clearRect(0,0,width,height);
+                ctx.putImageData(data,0,0);
+                ctx.closePath();
+            }
+            } 
+        c3.addEventListener("mousedown", myCanvasMouseDown, false);
+        c3.addEventListener("mousemove", myCanvasMouseMove, false);
+        c3.addEventListener("mouseup", myCanvasMouseUp, false);
+    </script>
+</body>
+</html>
