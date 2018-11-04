@@ -33,7 +33,7 @@ event.preventDefault();
     }
 }
 function myCanvasMouseMove(event) {
-    event.preventDefault();    
+    // event.preventDefault();    
 if (isMouseDown){
         lastX = event.layerX;
         lastY = event.layerY;
@@ -55,7 +55,7 @@ if (isMouseDown){
 }
 }
 function myCanvasMouseUp(event) {
-    event.preventDefault();    
+    // event.preventDefault();    
     if (isMouseDown){
 
         ctx.clearRect(0,0,width,height);
