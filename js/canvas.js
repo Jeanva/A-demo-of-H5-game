@@ -18,7 +18,7 @@ window.onclick = function(e){
 }
 
 function myCanvasMouseDown(event) {
-//event.preventDefault();    
+event.preventDefault();    
     ctx.clearRect(0,0,width,height);
     if(event.button == 0) {
         orignalX = event.layerX;
@@ -33,6 +33,7 @@ function myCanvasMouseDown(event) {
     }
 }
 function myCanvasMouseMove(event) {
+    event.preventDefault();    
 if (isMouseDown){
         lastX = event.layerX;
         lastY = event.layerY;
@@ -54,6 +55,7 @@ if (isMouseDown){
 }
 }
 function myCanvasMouseUp(event) {
+    event.preventDefault();    
     if (isMouseDown){
 
         ctx.clearRect(0,0,width,height);
