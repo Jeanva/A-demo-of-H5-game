@@ -18,7 +18,7 @@ window.onclick = function(e){
 }
 
 function myCanvasMouseDown(event) {
-event.preventDefault();    
+// event.preventDefault();    
     ctx.clearRect(0,0,width,height);
     if(event.button == 0) {
         orignalX = event.layerX;
